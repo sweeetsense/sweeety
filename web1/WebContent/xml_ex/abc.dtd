@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT jikwons (jikwon*)>
+	<!ELEMENT jikwon (irum, (jik|gender), pay?)>
+		<!ELEMENT irum (#PCDATA)>
+		<!ELEMENT jik (#PCDATA)>
+		<!ELEMENT gender (#PCDATA)>
+		<!ELEMENT pay (#PCDATA)>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	window.onload = function(){
+		//document.getElementById("mul").addEventListener("click", func1, false);
+		document.getElementById("mul").onclick = func1;
+		function func1(){
+			abc = document.getElementById("show");
+			if(abc.hasChildNodes()){
+				while(abc.hasChildNodes()){
+					abc.removeChild(abc.childNodes[0]);
+				}
+			}
+			for(i=1;i<=9;i++){
+			//	document.getElementById("show").innerHTML=num.value+"*"+i+"="+parseFloat(num.value)*i+"";
+				ele = document.createElement("r");
+				str = document.createTextNode(num.value+"*"+i+"="+parseFloat(num.value)*i+" ");
+				ele.appendChild(str);
+				abc.appendChild(ele);
+				
+			}
+		}
+	}
+</script>
+</head>
+<body>
+	숫자를입력해주세요:
+	<input type="text" id=num>
+	<input type="button" value = "출력" id = mul>
+	<hr> 숫자 출력
+	<div id = show></div>
+</body>
+</html>

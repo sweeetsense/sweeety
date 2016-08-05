@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+window.onload= function(){
+   document.getElementById("btnOk").onclick = function(){
+      startXhr();
+   }
+}
+//Ajax처리
+var xhr;
+function createXhr(){
+   if (window.ActiveXObject) {
+      xhr = new ActiveXObject("Msxml2.XMLHTTP");// IE8이하
+   }else if(window.XMLHttpRequest){
+      xhr = new XMLHttpRequest();
+   }
+}
+
+function startXhr(){
+   createXhr();
+   /* alert(xhr); */
+   //xhr.open("get", "aa.txt", true);
+   //xhr.open("get", "test1.html", true);
+   xhr.open("get", "aa.xml", true);
+   //xhr.open("get", "xml_ex/aa.xml", true);
+   //xhr.open("get", "http://localhost/web1/aa.xml", true);  //도메인이 같아야 한다.(다른IP주소 안됨)
+   xhr.onreadystatechange = function(){
+      /* alert(xhr.readyState); */
+      if(xhr.readyState == 4){ //통신상태 이상 없음
+         //alert(xhr.status); 
+         if (xhr.status == 200) {
+            process();
+         }else{
+            alert("요청 실패 : " + xhr.status);
+         }
+      }
+   }
+   xhr.send(null);
+}
+function process(){   
+   //var data = xhr.responseText;
+   //document.getElementById("disp").innerText = data;
+   
+   //xml문서 읽을 때
+   var data = xhr.responseXML;
+   /* 
+   imsi = data.getElementsByTagName("sang"); 
+   document.getElementById("disp").innerText = imsi[1].childNodes[0].nodeValue; 
+   */
+   var itemNode = data.getElementsByTagName("item");
+   //alert(itemNode.length);
+   var codeNode = data.getElementsByTagName("code");
+   var sangNode = data.getElementsByTagName("sang");
+   var str = "";
+   for (var i = 0; i < itemNode.length; i++) {
+      str += codeNode[i].childNodes[0].nodeValue + " ";
+      str += sangNode[i].childNodes[0].nodeValue + " ";
+      str += "<br>";
+   }
+   document.getElementById("disp").innerHTML = str;
+}
+</script>
+</head>
+<body>
+   <button id="btnOk">Ajax의 이해</button>
+   <br/>
+   <div id="disp">여기에 출력</div>
+</body>
+</html>

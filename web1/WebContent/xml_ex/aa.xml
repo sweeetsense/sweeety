@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<item>
+		<code>10</code>
+		<sang>자바 기초</sang>
+	</item>
+	<item>
+		<code>20</code>
+		<sang>오라클 활용</sang>
+	</item>
+	<item>
+		<code>30</code>
+		<sang>아작스 이해</sang>
+	</item>
+</list>

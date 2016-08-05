@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type = "text/xsl" href="ghi.xsl"?>
+
+<!DOCTYPE 교육센터 [
+<!ELEMENT 교육센터 (자바*)>
+	<!ELEMENT 자바 (학생명, 전화)>
+		<!ELEMENT 학생명 (#PCDATA)>
+		<!ELEMENT 전화 (#PCDATA)>
+]>
+
+<교육센터>
+	<자바>
+		<학생명>신기해</학생명>
+		<전화>111-1111</전화>
+	</자바>
+	<자바>
+		<학생명>이기자</학생명>
+		<전화>111-2222</전화>
+	</자바>
+</교육센터>

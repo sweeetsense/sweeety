@@ -1,0 +1,5 @@
+@CHARSET "UTF-8";
+div>span>i{
+	font-weight: bold;
+	color: rgb(255,0,0);
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+window.onload = function(){
+	document.getElementById("btn").onclick = postFunc;
+}
+var xhr;
+function postFunc(){
+	var sabun=frm.sawon_no.value;
+	var irum=frm.sawon_name.value;
+	
+	xhr = new XMLHttpRequest();
+	xhr.open("post", "ajax7Ex.jsp", true);
+	xhr.onreadystatechange() = function(){
+		if(xhr.readyState == 4){
+			if(xhr.status == 200){
+				alert("aa");
+			}else{
+				alert("post 오류 "+xhr.status);
+			}
+		}
+	}
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhr.send("sawon_no="+sabun+"&sawon_name="+irum);
+}
+</script>
+</head>
+<body>
+<form name="frm">
+사번: <input type="text" name="sawon_no"><br>
+이름: <input type="text" name="sawon_name"><br>
+<input type="button" value=post id="btn">
+</form>
+<hr/>
+<div id="show"></div>
+</body>
+</html>

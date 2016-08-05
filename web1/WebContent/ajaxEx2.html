@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>직원자료보기</title>
+<script type="text/javascript">
+var xhr;
+var jik;
+var jik2;
+var name;
+window.onload = function(){
+	document.getElementById("btnA").onclick=function(){
+		jik="";
+		startXhr();
+	}
+	document.getElementById("btnbu").onclick = function(){
+		jik="부장";
+		startXhr();
+	}
+	document.getElementById("btngwa").onclick = function(){
+		jik="과장";
+		startXhr();
+	}
+	document.getElementById("btndae").onclick = function(){
+		jik="대리";
+		startXhr();
+	}
+	document.getElementById("btnsa").onclick = function(){
+		jik="사원";
+		startXhr();
+	}
+	
+}
+function startXhr(){
+	xhr = new XMLHttpRequest();
+	xhr.open("get","jspEx2.jsp",true);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4){
+			if(xhr.status == 200){
+				process(jik);
+			}else{
+				alert("오류: "+xhr.status);
+			}
+		}
+	}
+	xhr.send(null);
+}
+function process(jik2){
+	var data = xhr.responseText;
+	var parseData = JSON.parse(data);
+	var str = "<table border=1><tr><th>사번</th><th>이름</th><th>직급</th><th>성별</th>"
+	for(var i=0;i<parseData.sawon.length;i++){
+		if(jik2.trim() == "" || jik2.trim() == parseData.sawon[i].sawon_jik){
+			str +="<tr><td>"+ parseData.sawon[i].sawon_no+"</td>"+
+			"<td><a href='#' onclick='buser(\""+parseData.sawon[i].buser_name+"\")'>"+parseData.sawon[i].sawon_name+"</a></td>"+
+			"<td>"+parseData.sawon[i].sawon_jik+"</td>"+
+			"<td>"+parseData.sawon[i].sawon_gen+"</td><br/>";
+		}
+	}
+	document.getElementById("disp").innerHTML = str;
+	document.getElementById("disp2").innerHTML = "";
+}
+function buser(name){
+	var data = xhr.responseText;
+	var parseData = JSON.parse(data);
+	var str2="";
+	var count=0;
+	for(var i=0;i<parseData.sawon.length;i++){
+		if(name.trim()==parseData.sawon[i].buser_name){
+			str2 =parseData.sawon[i].buser_name+" "+parseData.sawon[i].buser_tel;
+			count++;
+		}
+	}	
+	document.getElementById("disp2").innerHTML = "<br/>"+str2+"<br/>직원수: "+count+"명";
+}
+</script>
+</head>
+<body>
+<button id="btnA" name="btn" value="">전체</button>
+<button id="btnbu" name="btn" value="부장">부장</button>
+<button id="btngwa" name="btn" value="과장">과장</button>
+<button id="btndae" name="btn" value="대리">대리</button>
+<button id="btnsa" name="btn" value="사원">사원</button>
+<hr/>
+<div id="disp"></div>
+<div id="disp2"></div>
+</body>
+</html>

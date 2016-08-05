@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+var xhr;
+
+window.onload = function(){
+   document.getElementById("btnOk").addEventListener("click", startXhr, false);
+}
+
+function startXhr(){
+   xhr = new XMLHttpRequest();  
+   xhr.open("get", "aa.json", true);
+   xhr.onreadystatechange = function(){
+      if (xhr.readyState == 4) {
+         if (xhr.status == 200) {
+            process();
+         }else{
+            alert("실패 : " + xhr.status);   
+         }         
+      }
+   }
+   xhr.send(null);
+}
+
+function process(){
+   var data = xhr.responseText;
+   //alert(data);
+   var parseData = JSON.parse(data);
+   //alert(parseData);
+   //alert(parseData.sangpum.length);
+   
+   var str ="";
+   for (var i = 0; i < parseData.sangpum.length; i++) {
+      str += parseData.sangpum[i].code + " ";
+      str += parseData.sangpum[i].sang + "<br>";
+   }
+   document.getElementById("show").innerHTML = str;
+}
+</script>
+</head>
+<body>
+   <button id="btnOk">Ajax처리 : json type</button>
+   <hr>
+   <div id="show"></div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>WEATHER</title>
+</head>
+<script type="text/javascript">
+	window.onload=function(){
+		document.getElementById("btn").onclick = function(){
+			startXhr();
+		}	
+	}
+	
+	var xhr;
+	function createXhr(){
+		if(window.ActiveXObject){
+			xhr = new ActiveXObject("Msxml2.XMLHTTP");
+		}else if(window.XMLHttpRequest){
+			xhr = new XMLHttpRequest();
+		}
+	}
+	function startXhr(){
+		createXhr();
+		xhr.open("get","kma.xml",true);
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4){
+				if(xhr.status == 200){
+					process();
+				}else{
+					alert("요청 실패: "+xhr.status);
+				}
+			}
+		}
+		xhr.send(null);
+	}
+	function process(){
+		var data = xhr.responseXML;
+		var weatherNode = data.getElementsByTagName("weather");
+		var localNode = data.getElementsByTagName("local");
+		
+		var str = "<table border=1><tr><td><b>지역</td><td><b>온도</td>";
+		var str2="";
+		for(var i=0;i<weatherNode.length;i++){
+			str2 +=weatherNode[i].getAttribute("year")+"년";
+			str2 +=weatherNode[i].getAttribute("month")+"월";
+			str2 +=weatherNode[i].getAttribute("day")+"일";
+			str2 +=weatherNode[i].getAttribute("hour")+"시<br>";
+		}
+		for(var i = 0;i<localNode.length;i++){
+			if(i%2==0){
+				str += "<tr bgcolor=red><td><b>"+localNode[i].childNodes[0].nodeValue+"</td>";
+				str += "<td>"+localNode[i].getAttribute("ta")+"</td>"
+			}else{
+				str += "<tr><td><b>"+localNode[i].childNodes[0].nodeValue+"</td>";
+				str += "<td>"+localNode[i].getAttribute("ta")+"</td>"
+			}
+		}
+		
+		document.getElementById("disp").innerHTML = str2+"<br>"+str+"</table>";
+	}
+</script>
+<body>
+	<button id = "btn">READ</button>
+	<br/>
+	<hr>
+	<div id="disp"></div>
+	</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+window.onload = function(){
+	document.getElementById("btnPost").onclick = postFunc;
+}
+
+var xhr;
+var sabun,irum;
+function getFunc(){
+	var irum=frm.name.value;
+	var nai=frm.age.value;
+	fname="ajax7.jsp?name="+irum+"&age="+nai;
+	
+	xhr=new XMLHttpRequest();
+	xhr.open("get",fname,true);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4){
+			if(xhr.status == 200){
+				process1();
+			}else{
+				alert("get 오류 "+xhr.status);
+			}
+		}
+	}
+	xhr.send(null);
+}
+function postFunc(){
+	sabun=frm.sawon_no.value;
+	irum=frm.sawon_name.value;
+		
+	xhr=new XMLHttpRequest();
+	xhr.open("post","ajax7Ex.jsp",true);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4){
+			if(xhr.status == 200){
+				process2();
+			}else{
+				alert("post 오류 "+xhr.status);
+			}
+		}
+	}
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhr.send("sawon_no="+sabun+"&sawon_name="+irum);
+}
+function process1(){
+	var data = xhr.responseText;
+	document.getElementById("show").innerText = "get 요청 처리 결과: "+data
+}
+function process2(){
+	var data = xhr.responseText;
+	var parseData = JSON.parse(data);
+	var count=0;
+	var str = "<table border=1><tr><th>고객명</th><th>고객전화</th><th>성별</th>";
+	for(var i=0;i<parseData.sawon.length;i++){
+		if((sabun == parseData.sawon[i].sawon_no) && (irum == parseData.sawon[i].sawon_name)){
+			if(parseData.sawon[i].gogek_jumin.substring(7,8) == 1){
+				str += "<tr bgcolor=blue style='color:white'><td>"+parseData.sawon[i].gogek_name+"</td>"+
+				"<td>"+parseData.sawon[i].gogek_tel+"</td>"+
+				"<td>"+parseData.sawon[i].gogek_gen+"</td><br/>";
+			}else{
+				str += "<tr bgcolor=yellow style='color:black'><td>"+parseData.sawon[i].gogek_name+"</td>"+
+				"<td>"+parseData.sawon[i].gogek_tel+"</td>"+
+				"<td>"+parseData.sawon[i].gogek_gen+"</td><br/>";
+			}
+			count++;
+		}
+		}
+	document.getElementById("show").innerHTML = str+"고객수: "+count+" 명";
+}
+
+</script>
+</head>
+<body>
+get, post test<p/>
+<form name="frm">
+사번: <input type = "text" name="sawon_no"><br>
+이름: <input type = "text" name="sawon_name"><br>
+<input type="button" value="post" id="btnPost">
+</form>
+<hr/>
+<div id="show"></div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script type="text/javascript">
+var sangpum = {"responseData": 
+  {"results":
+   [
+      {"GsearchResultClass":"GwebSearch", "unescapedUrl":"http://en.wikipedia.org/wiki/Paris_Hilton"},
+      {"GsearchResultClass":"GwebSearch", "unescapedUrl":"http://www.imdb.com/name/nm0385296/"}
+   ],
+   "cursor":
+   {
+      "resultCount":"24,400,000",
+      "pages":
+      [
+         {"start":"0","label":1},
+         {"start":"4","label":2}
+      ],  
+      "estimatedResultCount":"24400000"
+   }
+  }, 
+  "responseDetails": "abc", 
+  "responseStatus": 200
+}
+alert(sangpum.responseData.results[0].GsearchResultClass);
+alert(sangpum.responseData.results[0].unescapedUrl);
+alert(sangpum.responseData.cursor.resultCount);
+alert(sangpum.responseData.cursor.pages[0].start);
+alert(sangpum.responseStatus);
+</script>
+</body>
+</html>

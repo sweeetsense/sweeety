@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript">
+	window.onload = function(){
+		document.getElementById("btn1").onclick = func1;
+		document.getElementById("btn2").onclick = func2;
+	}
+	function func1(){
+		var temp = num1.value;
+		var temp2 = num2.value;
+		remove = document.getElementById("show2");
+		
+		if(remove.hasChildNodes()){
+			remove.removeChild(remove.childNodes[0]);
+		}
+
+		if(isNaN(temp) == true || isNaN(temp2) == true){
+			document.getElementById("show").innerHTML = num1.value+num2.value;
+			a = document.getElementById("show2");
+			var ele = document.createElement("b");
+			var str = document.createTextNode((num1.value+num2.value));
+			ele.appendChild(str);
+			a.appendChild(ele);
+		}else{
+			document.getElementById("show").innerHTML = (parseInt(num1.value)+parseInt(num2.value));
+			a = document.getElementById("show2");
+			var ele = document.createElement("b");
+			var str = document.createTextNode((parseInt(num1.value)+parseInt(num2.value)));
+			ele.appendChild(str);
+			a.appendChild(ele);
+		}
+	
+	}
+	function func2(){
+		num1.value = "";
+		num2.value = "";
+		document.getElementById("show").innerHTML = "";
+		while(remove.hasChildNodes()){
+			remove.removeChild(remove.childNodes[0]);
+		}
+	}
+</script>
+<body>
+<span>자료1: </span>
+	<input type="text" id = num1>
+	<br/>
+<span>자료2: </span>	
+	<input type="text" id = num2>
+	<br/><br/>
+<input type="button" value = "확인" id = "btn1" >
+<input type="button" value = "초기화" id = "btn2">
+	<hr>
+<div id = "show"></div>
+<div id = "show2"></div>
+</body>
+</html>

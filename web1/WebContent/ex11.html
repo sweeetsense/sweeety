@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	window.onload = function(){
+		document.getElementById("btn1").addEventListener("click", func1, false);
+		document.getElementById("btn2").onclick = func2;
+		function func1(){
+			var num = /^[0-9]*$/;
+			abc = document.getElementById("show2");
+			
+			if(abc.hasChildNodes()){
+				abc.removeChild(abc.childNodes[0]);
+			}
+			/*
+			if(num1.value.match(num) && num2.value.match(num)){
+				document.getElementById("show1").innerHTML = parseInt(num1.value)+parseInt(num2.value);
+				ele = document.createElement("r");
+				str = document.createTextNode(parseInt(num1.value)+parseInt(num2.value));
+				ele.appendChild(str);
+				abc.appendChild(ele);
+			}else{
+				document.getElementById("show1").innerHTML = num1.value+num2.value;
+				ele = document.createElement("r");
+				str = document.createTextNode(num1.value+num2.value);
+				ele.appendChild(str);
+				abc.appendChild(ele);
+			}*/
+			
+			if(isNaN(num1.value) || isNaN(num2.value)){
+				document.getElementById("show1").innerHTML = num1.value+num2.value;
+				ele = document.createElement("r");
+				str = document.createTextNode(num1.value+num2.value);
+				ele.appendChild(str);
+				abc.appendChild(ele);
+			}else{
+				document.getElementById("show1").innerHTML = parseInt(num1.value)+parseInt(num2.value);
+				ele = document.createElement("r");
+				str = document.createTextNode(parseInt(num1.value)+parseInt(num2.value));
+				ele.appendChild(str);
+				abc.appendChild(ele);
+			}
+			
+		}
+		function func2(){
+			num1.value="";
+			num2.value="";
+			document.getElementById("show1").innerHTML = "";
+			while(abc.hasChildNodes()){
+				abc.removeChild(abc.childNodes[0]);
+			}
+		}
+	}
+</script>
+</head>
+<body>
+	<input type="text" id = num1>
+	<br/>
+	<input type="text" id = num2>
+	<br/><br/>
+	<input type="button" value = "확인" id = btn1>
+	<input type="button" value = "초기화" id = btn2>
+	<hr>
+	
+	innerHTML: <span id = "show1"></span>
+	<br>
+	DOM: <span id = "show2"></span>
+</body>
+</html>

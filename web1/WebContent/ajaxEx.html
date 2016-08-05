@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	var xhr;
+	window.onload=function(){
+		document.getElementById("btn").onclick= startXhr;
+	}
+	function startXhr(){
+		xhr = new XMLHttpRequest();
+		xhr.open("get","book.json",true);
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4){
+				if(xhr.status == 200){
+					process();
+				}else{
+					alert("실패: "+xhr.status);
+				}
+			}
+		}
+		xhr.send(null);
+	}
+	function process(){
+		var data = xhr.responseText;
+		//alert(data);
+		var parseData = JSON.parse(data);
+	
+		var str="<table border=1><tr><td>도서관명</td><td>주소</td><td>전화번호</td>";
+		for(var i=0;i<parseData.SeoulLibraryTime.row.length;i++){
+			str += "<tr><td>"+parseData.SeoulLibraryTime.row[i].LBRRY_NAME+"</td>"+
+			"<td>"+parseData.SeoulLibraryTime.row[i].ADRES+"</td><td>"+
+			parseData.SeoulLibraryTime.row[i].TEL_NO+"</td><br>";
+		}
+		document.getElementById("show").innerHTML = str+"</table>";
+	}
+</script>
+</head>
+<body>
+	<button id="btn">읽기</button>
+	<hr>
+	<div id="show"></div>
+</body>
+</html>

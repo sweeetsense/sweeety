@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>상품자료</title>
+<script type="text/javascript">
+var xhr;
+window.onload = function(){
+	document.getElementById("btnOk").onclick = function(){
+		startXhr();
+	}
+}
+function startXhr(){
+	xhr = new XMLHttpRequest();
+	xhr.open("get","jspxml1.jsp",true);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState ==4){
+			if(xhr.status == 200){
+				process();
+			}else{
+				alert("오류: "+xhr.status);
+			}
+		}
+	}
+	xhr.send(null);
+}
+function process(){
+	var data = xhr.responseXML;
+	var sangpumNode = data.getElementsByTagName("sangpum");
+	var codeNode = data.getElementsByTagName("code");
+	var sangNode = data.getElementsByTagName("sang");
+	var suNode = data.getElementsByTagName("su");
+	var danNode = data.getElementsByTagName("dan");
+	
+	var str = "<table border='1'>";
+	str += "<tr><th>코드</th><th>품명</th><th>수량</th><th>단가</th></tr>";
+	for(var i=0;i<sangpumNode.length;i++){
+		str += "<tr>";
+		str += "<td>"+codeNode[i].childNodes[0].nodeValue+"</td>";
+		str += "<td>"+sangNode[i].firstChild.nodeValue+"</td>";
+		str += "<td>"+suNode[i].firstChild.nodeValue+"</td>";
+		str += "<td>"+danNode[i].firstChild.nodeValue+"</td>";
+	}
+	str += "</table>";
+	document.getElementById("disp").innerHTML = str;
+}
+</script>
+</head>
+<body>
+후하하하하하<p/>
+<button id = "btnOk">Ajax로 오라클 자료 읽기(XML)</button>
+<hr/>
+<div id="disp"></div>
+</body>
+</html>

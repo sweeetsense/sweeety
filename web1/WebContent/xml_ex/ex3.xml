@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jikwons SYSTEM "abc.dtd" >
+<jikwons>
+	<jikwon>
+		<irum>동철</irum>
+		<gender>남</gender>
+		<pay>6700</pay>
+	</jikwon>
+	<jikwon>
+		<irum>현진</irum>
+		<gender>부장</gender>
+	</jikwon>
+</jikwons>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="ajax8Ex.js"></script>
+</head>
+<body>
+<table border="1">
+	<tr>
+		<td id="" onmouseover="goFunc(this)" onmouseout="clsFunc()">&nbsp;&nbsp;&nbsp;전체고객&nbsp;&nbsp;&nbsp;</td>
+		<td id="1" onmouseover="goFunc(this)" onmouseout="clsFunc()">&nbsp;&nbsp;&nbsp;남자&nbsp;&nbsp;&nbsp;</td>
+		<td id="2" onmouseover="goFunc(this)" onmouseout="clsFunc()">&nbsp;&nbsp;&nbsp;여자&nbsp;&nbsp;&nbsp;</td>
+	</tr>
+</table>
+<input type="radio" onchange="XML()" name="radio" id="xml" checked>XML
+<input type="radio" onchange="JSON()" name="radio" id="json">JSON
+<div style="position: absolute;" id="popup">
+<table border="1">
+	<tbody id="disp"></tbody>
+</table>
+</div>
+<div style="position: absolute;" id="popup2">
+<table>
+	<tbody id="disp2"></tbody>
+</table>
+</div>
+</body>
+</html>
