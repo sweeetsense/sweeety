@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#sang").bind("keydown", function(e){
+		if(e.keyCode == 13){
+			if($("#sang").val() == ""){
+				alert("품명을 입력하시오");
+				return;
+			}else if(isNaN($("#sang").val()) == false){
+				alert("문자로 입력하시오");
+				$("#sang").val("");
+				return;
+			}else{
+				$("#su").focus();
+			}
+		}
+	});
+	$("#su").bind("keydown", function(e){
+		if(e.keyCode == 13){
+			if($("#su").val() == ""){
+				alert("수량을 입력하시오");
+				return;
+			}else if(isNaN(parseInt($("#su").val()))){
+				alert("숫자로 입력하시오");
+				$("#su").val("");
+				return;
+			}else{
+				$("#dan").focus();
+			}
+		}
+	});
+	$("#dan").bind("keydown", function(e){
+		if(e.keyCode == 13){		//enter 칠때마다 결과 출력(안주면 숫자 치자마자 바로 결과 출력)
+			if($("#dan").val() == ""){
+				alert("단가를 입력하시오");
+				return;
+			}else if(isNaN(parseInt($("#dan").val()))){
+				alert("숫자로 입력하시오");
+				$("#dan").val("");
+				return;
+			}else{
+				//$("#disp").val("");
+				$("#disp").empty();	//위의 결과 동일
+				$("#disp").append($("#sang").val() + "의 금액은 "+ ($("#su").val()*$("#dan").val()) + " 원");
+				
+			}
+		}
+	});
+	
+	$("#btnClear").bind("click", function(){
+		$("#sang").val("");
+		$("#su").val("");
+		$("#dan").val('');
+		$("#disp").empty();
+		$("#sang").focus();
+	});
+});
+</script>
+</head>
+<body>
+** 입력 자료 검사 **</p>
+<form action="#">
+품명: <input type="text" id="sang"><br/>
+수량: <input type="text" id="su"><br/>
+단가: <input type="text" id="dan"><br/>
+결과: <div id="disp"></div>
+</form>
+<button id="btnClear">초기화</button> <!-- form tag 내의 button은 enter 이벤트가 기본 장착 -->
+</body>
+</html>

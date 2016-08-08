@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- <script type="text/javascript" src="js/jquery-3.1.0.js"></script>-->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>"></script> -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<style type="text/css">
+	.good{
+		font-size : 50px;
+	}
+</style>
+<script type="text/javascript">
+/* window.onload = function(){
+	alert("aa");
+} */
+//JQuery(document).ready();
+$(document).ready(function(){
+	//alert("bb");
+	$("*").css("border","1px solid #f00");	//
+	$("span").css("border", "3px dotted blue");	//검색: span(element)
+	$("#content").css("background-color", "cyan");	//검색: id(attribute)
+	$(".my").css("border", "5px solid yellow");	//선택: class(attribute)  .클래스명 으로 선택
+	$("i > .my").css("color", "red");	//i태그 안에 있는 클래스my 적용
+});
+
+$(function(){	//document.ready 생략가능
+	//$(".kor").css("color", "blue");
+	//$("b").css("background-color","black");
+	$(".kor").css("color", "blue").addClass("good");		//메소드 체인
+});
+</script>
+</head>
+<body>
+<h2 class="good">jQuery 연습</h2>
+<p class="my">매우 무더운 여름</p>
+<div>
+	<div id="content">가을이 오겠지</div>
+</div>
+<span>강남역</span>
+<i><span class="my">12번 출구</span></i>
+<b class="kor">대한민국</b>
+</body>
+</html>

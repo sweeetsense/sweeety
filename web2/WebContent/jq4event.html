@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.abc{
+	background-color: #bbb;
+}
+</style>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	//$("h1").css("color", "red");
+	//$("h1").css("text-decoration", "underline");
+	$("h1").css({"color":"red", "text-decoration":"underline"});
+	$("#message").wrap("<h2>");
+	
+	//이벤트		
+	$("input").focus(function(){		//focus를 가질때
+		$(this).addClass("abc");
+	});
+	$("input").blur(function(){ 		//focus를 잃을때
+		$(this).removeClass("abc");
+	});
+	
+	$("#frm").submit(function(event){
+		event.preventDefault();			//js - 기본 이벤트 기능 해제
+		//alert("aa");
+		var new_ele = $("<li>"+$("#data").val()+"</li>");
+		$("#disp").append(new_ele);
+	})
+	
+	$("a").click(function(event){
+		event.preventDefault();
+		alert("다른 기능으로 대체 가능하다");
+	})
+});
+</script>
+</head>
+<body>
+<h1>jQuery 지원</h1>
+<div id="message">이벤트 처리</div>
+<form action="aa.jsp" id="frm">
+	<label for="data">자료 입력</label>	<!--라벨은 data꺼 -->
+	<input type="text" id="data">
+	<input type="submit" value="확인">
+</form>
+<ul id="disp"></ul>
+<br>
+<a href="http://naver.com">naver</a>
+</body>
+</html>

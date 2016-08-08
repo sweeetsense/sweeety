@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+a= false;
+b= false;
+c = false;
+$(document).ready(function(){
+	$("#name").on("keydown", function(e){
+		if(e.keyCode == 13 ){
+			if($("#name").val() == ""){
+				alert("학생명을 입력하시오");
+				a=false;
+				return;
+			}else if($("#name").val().length>10){
+				alert("10자 이내로 입력해주세요");
+				a=false;
+				return;
+			}else if(isNaN($("#name").val()) == false){
+				alert("문자만 가능합니다");
+				$("#name").val("");
+				a=false;
+				return;
+			}else{
+				a=true;
+				$("#kor").focus();
+			}
+		}
+	});
+	$("#kor").on("keydown", function(e){
+		if(e.keyCode == 13){
+			if($("#kor").val() == ""){
+				alert("국어 점수를 입력하시오");
+				b=false;
+				return;
+			}else if($("#kor").val().length>3){
+				alert("3자 이내로 입력해주세요");
+				$("#kor").val("");
+				b=false;
+				return;
+			}else if(isNaN($("#kor").val())){
+				alert("숫자만 가능합니다");
+				$("#kor").val("");
+				b=false;
+				return;
+			}else{
+				b=true;
+				$("#eng").focus();
+			}
+		}
+	});
+	$("#eng").on("keydown", function(e){
+		if(e.keyCode == 13){
+			if($("#eng").val() == ""){
+				alert("영어 점수를 입력하시오");
+				c=false;
+				return;
+			}else if($("#eng").val().length>3){
+				alert("3자 이내로 입력해주세요");
+				$("#eng").val("");
+				c=false;
+				return;
+			}else if(isNaN($("#eng").val())){
+				alert("숫자만 가능합니다");
+				$("#eng").val("");
+				c=false;
+				return;
+			}else{
+				c=true;
+				return true;
+			}
+		}
+	});
+	
+	$("#clear").on("click", function(){
+		$("#name").val("");
+		$("#kor").val("");
+		$("#eng").val("");
+		$("#name").focus();
+		
+	});
+	
+ 	$("#submit").on("click", function(){
+		if(a===false || b===false || c===false){
+			return false;
+		}
+	});
+	 
+});
+</script>
+</head>
+<body>
+** 자료 입력 **
+
+<form id="frm" action="jq6Ex.jsp" method="get">
+학생명 : <input type="text" id="name" name="name"><br/>
+국어 : <input type="text" id ="kor" name="kor"><br/>
+영어 : <input type="text" id ="eng" name="eng"><br/><br/>
+
+<input type="submit" id="submit" value="처리">
+<button id = "clear">초기화</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	//var p = document.getElementsByTagName("p");	//js
+	var p=$("p")	//jQuery
+	//alert(p.length+", "+p.size());
+	p[0].style.color = "red";	//js
+	p[1].style.color = "#0000ff";	//js
+	p[2].style.color = "rgb(0,255,0)";	//js
+	
+	$("p").eq(1).css("color", "aqua"); 	//jQuery
+	//alert($("p").index($(".kbs")) +"반복 요소");
+	$("p").eq($("p").index($(".kbs"))).css("color", "yellow");
+	
+	var arr = $("h1~p");	//h1 하위에서 검색을 시작한다.
+	//alert(arr.length);
+	var result = "";
+	for(var i=0;i<arr.length;i++){
+		//result += arr[i].innerHTML+",";	//js
+		//result += $(arr[i]).html() + ",";		//jQuery
+		//result += arr[i].innerText+",";		//js(i tag가 빠짐)
+		result += $(arr[i]).text() + ",";		//jQuery(i tag가 빠짐)
+	}
+	//alert(result);
+	
+	var arr2 = $("p:not(.kbs)");	//클래스가 kbs인 것들을 제외시킨다. (특정 셀렉터 제외)
+	//alert(arr2.length);
+	
+	//실행 중에 요소 추가(dom 사용)
+	//$("b").prepend("<h2>요소 추가(기존 요소 앞에 추가됨)</h2>");
+	$("<h2>요소 추가(기존 요소 앞에 추가됨)</h2>").prependTo("b");	//소스와 타겟의 위치를 바꿔줘도 가능
+	//$("b").append("<h1>요소 추가(기존 요소 뒤에 추가됨)</h1>");
+	$("<h1>요소 추가(기존 요소 뒤에 추가됨)</h1>").appendTo("b");
+	
+	//반복 처리
+	var ss = "";
+	var arr3 = $("li");
+	//alert(arr3.length);
+	$("li").each(function(){	//li 요소 수 만큼 반복
+		//ss += $(this).html()+",";	//this는 현재 요소를 의미한다.
+		ss += $(this).text()+",";	
+	})
+	//alert(ss);
+	
+	//사용자 정의 선택자
+	$("tbody tr:odd").css("background-color", "#123456"); // > : 직계, 없으면 안에 어딘가에 있으면 됨 / odd: 홀수 요소 검색
+	$("tbody tr:even").css("color", "red");		//even: 짝수 요소 검색
+	$("tbody tr:eq(1)").css("background-color", "yellow");
+	$("tbody tr:gt(3)").css("background-color", "blue");		//gt : index 보다 큰
+	$("tbody tr:lt(2)").css("background-color", "cyan");		//lt : index 보다 작은
+	$("tbody tr:contains('한국삼')").css("font-size", "40px");	//contains : 문자를 포함한
+});
+</script>
+</head>
+<body>
+<p>jQuery연습</p>
+<h1>요소 배열</h1>
+<p><i>p요소1</i></p>
+<p>p요소2</p>
+<p class="kbs">p요소3</p>
+<hr>
+문서에 문자열 추가<br>
+<b style="background-color: orange;">대한민국</b>
+<hr>
+**반복 처리(each) **<br/>
+<ul>
+	<li><i>윈도우</i></li>
+	<li>리눅스</li>
+	<li>맥킨토시</li>
+</ul>
+<ol>
+	<li>오라클</li>
+	<li>마리아DB</li>
+</ol>
+
+<hr>
+<table style="border: 1px solid;">
+	<thead>
+		<tr><th>이름</th><th>전화</th></tr>
+	</thead>
+	<tbody>
+		<tr><td>한국일</td><th>111-1111</th></tr>
+		<tr><td>한국이</td><th>222-1111</th></tr>
+		<tr><td>한국삼</td><th>333-1111</th></tr>
+		<tr><td>한국사</td><th>444-1111</th></tr>
+		<tr><td>한국오</td><th>555-1111</th></tr>
+		<tr><td>한국육</td><th>666-1111</th></tr>
+	</tbody>
+</table>
+</body>
+</html>
