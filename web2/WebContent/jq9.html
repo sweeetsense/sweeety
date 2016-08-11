@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.hov{
+	background-color: blue;	color: white;
+}
+.pagehov{
+	text-decoration: underline;
+	color: blue;
+	cursor: pointer;
+}
+.page{
+	margin: 5px;
+}
+</style>
+<script type="text/javascript" src = "http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	//tr 반전
+	$("tbody > tr").hover(
+		function(){
+			$(this).find("td").addClass("hov");
+		},
+		function(){
+			$(this).find("td").removeClass("hov");
+		}
+	);
+	
+	//페이징
+	var rows = $("table").find("tbody tr").length;
+	//alert("행 수: "+rows);
+	var per_page = 3;
+	var num_page = Math.ceil(rows/per_page);		//페이지수 얻기, Math.ceil(): 소수일때 자신보다 큰 정수 쪽 출력
+	//alert(num_page);
+	
+	var pNumbers = $("<div id='pages'></div>");		//페이지 번호 출력을 위한 태그
+	for(var i=0;i<num_page;i++){
+		$("<span class='page'>"+(i+1)+"</span>").appendTo(pNumbers);
+	}
+	pNumbers.insertAfter("table");
+	
+	//페이지 링크걸기
+	/* $(".page").hover(
+		function(){
+			$(this).addClass("pagehov");
+		},	
+		function(){
+			$(this).removeClass("pagehov");
+		}
+	); */
+	$(".page").hover(
+			function(){
+				$(this).addClass("hov");
+			},	
+			function(){
+				$(this).removeClass("hov");
+			}
+		);
+	$("table").find("tbody tr").hide();
+	var t = $("table tbody tr");
+	
+	for(var j=0;j<per_page;j++){
+		$(t[j]).show();
+	}
+	
+	$("span.page").click(function(){
+		$("table").find("tbody tr").hide();
+		for(var k=($(this).text()-1)*per_page;k<($(this).text())*per_page;k++){
+			$(t[k]).show();
+			//for(k=(1-1)*3;k<(1*3);k++)
+		}
+		
+	});
+});
+
+</script>
+</head>
+<body>
+테이블 행 하이라이트<p/>
+<table border="1">
+	<thead><tr><th>사번</th><th>직원명</th></tr></thead>
+	<tbody>
+		<tr><td>1</td><td>이기자1</td></tr>
+		<tr><td>2</td><td>이기지2</td></tr>
+		<tr><td>3</td><td>이기자3</td></tr>
+		<tr><td>4</td><td>이기자4</td></tr>
+		<tr><td>5</td><td>이기자5</td></tr>
+		<tr><td>6</td><td>이기자6</td></tr>
+		<tr><td>7</td><td>이기자7</td></tr>
+		<tr><td>8</td><td>이기자8</td></tr>
+		<tr><td>9</td><td>이기자9</td></tr>
+		<tr><td>10</td><td>이기자10</td></tr>
+	</tbody>
+</table>
+</body>
+</html>

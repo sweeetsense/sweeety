@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src = "http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	//text 문서
+	$("#test1").click(function(){
+		$("#disp").load("jq12.txt");	//ajax 처리 메소드
+		$("#disp").hide().load("jq12.txt", function(){
+			$(this).fadeIn();
+		});
+	});
+	
+	//xml
+	$("#test2").click(function(){
+		$("#disp").empty();
+		$.get("jq12.xml", function(data){		//get방식 -ajax처리 메소드
+			//alert(data);
+			//alert($(data).find("aa").size());
+			$(data).find("aa").each(function(){
+				var fdata= $(this);
+				//console.log(fdata);
+				var str = "<div>";
+				str+=fdata.attr("para");
+				str+=fdata.attr("term");
+				str+=" - ";
+				str+=fdata.find("desc").text();		//요소값
+				str+="</div>";
+				$("#disp").append(str);
+			});
+		});
+		/* $.post("jq12.xml", function(){		//post방식 -ajax처리 메소드
+			
+		}); */
+	});
+	$("#test3").click(function(){
+		$("#disp2").empty();
+		$.get("jq12.jsp", function(data){
+			//alert(data);
+			var str="<table border=1>"
+			$(data).find("sawon").each(function(){
+				var fdata = $(this);
+				//console.log(fdata);
+				str+= "<tr>";
+				str+="<td>"+fdata.find("sawon_no").text()+"</td>";
+				str+="<td>"+fdata.find("sawon_name").text()+"</td>";
+				str+="<td>"+fdata.find("buser_name").text()+"</td>";
+			});
+				str+="</table>";
+				$("#disp2").append(str);
+		});
+	});
+	
+	$("#test4").click(function(){		//json
+		$("#disp").empty();
+		$.getJSON("jq12.json", null, function(data){
+			//alert(data);
+			$.each(data, function(keyindex, value){
+				//alert(keyindex+" "+value);
+				var str = "<ol>";
+				str+="<li>"+value["title"]+"</li>";
+				str+="<li>"+value["desc"]+"</li>";
+				str+="<li>"+value["author"]+"</li>";
+				str+="</ol>";
+				$("#disp").append(str);
+			})
+		});
+	});
+	
+	$("#test5").click(function(){
+		$("#disp2").empty();
+		$.getJSON("jq12db.jsp", null, function(data){
+				var str = "<ol>";
+			$.each(data, function(keyindex, value){
+				//alert(keyindex+" "+value);
+				str+="<li>"+value["sawon_no"]+" ";
+				str+=value["sawon_name"]+" ";
+				str+=value["buser_num"]+"</li>";
+			});
+				str+="</ol>";
+				$("#disp2").append(str);
+		});
+	});
+	
+});
+</script>
+</head>
+<body>
+<h2>** ajax 자료 읽기 **</h2>
+<div>
+	<ul>
+		<li id="test1">txt읽기</li>
+		<li id="test2">xml읽기</li>
+		<li id="test3">xml읽기-db:sawon</li>
+		<li id="test4">json읽기</li>
+		<li id="test5">json읽기-db:sawon</li>
+	</ul>
+</div>
+<br/>
+결과: <div id="disp"></div>
+<hr>
+결과(db):<div id="disp2"></div>
+</body>
+</html>

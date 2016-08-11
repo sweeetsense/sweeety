@@ -1,0 +1,7 @@
+@CHARSET "UTF-8";
+#userid, #age, #pwd1, #pwd2{
+	width: 200px;
+}
+.msg{
+	color: red; padding-left: 2px;
+}

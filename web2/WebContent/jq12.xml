@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<abc>
+	<aa term="kbs" para="1.">
+		<desc>공영방송</desc>
+	</aa>
+	<aa term="mbc" para="2.">
+		<desc>문화방송</desc>
+	</aa>
+	<aa term="sbs" para="3.">
+		<desc>서울방송</desc>
+	</aa>
+</abc>

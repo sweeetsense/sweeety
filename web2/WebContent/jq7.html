@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+#container{
+   font-size: 14px; margin: 10px; 
+}
+h2 {
+   font-size: 1.3em; margin-bottom: .5em; <!--em은 배율로 설정하는 값-->
+}
+.label{
+   width: 130px; margin: .5em;
+}
+.myhover{
+	cursor: pointer; background: #ffc;
+}
+</style>
+<script type="text/javascript" src = "http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+   
+   var speech = $("div.speech");
+   var defaultSize = speech.css("fontSize");
+   //alert(defaultSize);
+   
+   $("#switcher button").click(function(){
+      //alert("success");
+      //alert(parseFloat("1234abc"));
+      var num = parseFloat(speech.css("fontSize"), 10);   //,10의 역활: 10진수로 표현하라는 명령
+      //alert(num);
+      switch(this.id){
+      case "btn_default":
+    	  num = parseFloat(defaultSize, 10);;
+    	  break;
+      case "btn_large":
+    	  num += 8;		//num *= 1.4;
+    	  break;
+      case "btn_small":
+    	  num -= 8;		//num /= 1.4;
+    	  break;
+      default:
+    	  num = parseFloat(defaultSize, 10);
+      	  break;
+      }
+      
+      speech.animate({fontSize: num+"px"}, 500);	//작은 수 빠름, 큰 수 느림
+   });
+   //문서의 일부 hide/show 효과
+   var firstPara = $("p:eq(1)");
+   firstPara.hide();
+   
+   $("a.more").click(function(){
+ 	  if(firstPara.is(":hidden")){		// : - 액션태그
+ 		  //firstPara.fadeIn("slow");
+ 	  	  firstPara.slideToggle("slow");
+ 	  	  $(this).text("read less");
+ 	  }else{
+ 		  //firstPara.fadeOut("slow");
+ 		  firstPara.slideToggle("slow");
+ 		  $(this).text("read more");
+ 	  }
+   });
+   
+   //hover 이벤트: hover(핸들러1, 핸들러2)
+   $("button, a.more").hover(
+		function(){
+			$(this).addClass("myhover");
+		},
+		function(){
+			$(this).removeClass("myhover");
+		}
+   );
+   
+});
+</script>
+</head>
+<body>
+<div id = "container">
+   <h2>텍스트 효과 연습</h2>
+   <div id = "switcher">
+      <div class = "label">글자크기 변경</div>
+      <button id = "btn_default">보통</button>
+      <button id = "btn_large">크게</button>
+      <button id = "btn_small">작게</button>
+   </div>
+   <div class = "speech">
+      <p>‘10-10’ 목표를 내세운 리우 올림픽 한국 선수단</p>
+      <p>한국은 지구 정반대편에 있는 국민들 응원 속에 8일 현재(한국시간)까지 양궁 단체전에서만 두 개의 금메달을 따냈다. 
+      하지만 양궁에서의 완벽한 승리와 다르게 다른 종목에선 기대에 못 미치는 성적을 내고 있는 것도 사실이다. 
+      초반 성적이 대회 전체 성적을 좌우한다고 해도 과언이 아닐 만큼 한국 입장에선 개막 직후 금메달 행진이 중요했다. 
+      그러나 사격 남자 10m 공기권총 진종오와 유도 남자 60㎏급 김원진, 66㎏급 안바울, 73㎏급 안창림, 펜싱 여자 사브르 김지연 등 1~2개의 금메달이
+      더 나오기를 기대했던 곳에서 낭보가 들려오지 않았다. 팬들의 관심을 한껏 모은 수영 박태환도 줄줄이 예선탈락하며 고개를 숙였다.
+      </p>
+      <a href = "#" class = "more">read more</a>
+      <p>리우 올림픽도 이제 중반을 향해 조금씩 달려가고 있다. 한국 선수단은 양궁의 기를 받아 다른 종목도 힘을 내야하는 상황이다. 
+      10일 사격 남자 50m 권총을 통해 올림픽 개인종목 3연패에 도전하는 진종오,11일 열리는 유도 남자 90㎏급 곽동한,사격 여자 25m 권총 김장미,
+      펜싱 남자 사브르 김정환 구본길 등이 한국의 금빛 낭보를 이어갈 후보들로 주목받고 있다. 
+      이후 다시 12일(여자)과 13일(남자)에 양궁 개인전에서 금메달 1~2개를 추가하면 ‘10개 이상의 금메달로 10위 안에 든다’는 ‘10-10’ 
+      목표 달성에 가파르게 다가갈 수 있다는 계산이 나온다. 대회 후반부엔 태권도와 레슬링, 배드민턴이 한국의 메달밭으로 등장하는데 
+      3~4개 정도 추가가 예상된다.</p>
+   </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	table tr td{
+	border: solid; color: black;
+	}
+	
+	.small img{
+	border: none;
+	margin: 10px;
+	width: 50px;
+	height: 50px;
+	}
+	
+	.large{
+	width: 200px;
+	height: 200px;
+	text-align: center;
+	}
+	
+	.hov{
+		background-color: cyan;
+	}
+</style>
+<script type="text/javascript" src = "http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".small").hover(
+		function(){
+			$(this).parent().addClass("hov");
+			var imgName= $(this).attr("href");
+			//alert(imgName);
+			$(".large").fadeTo("slow", 0, function(){
+				$(".large").attr("src",imgName);
+				
+			}).fadeTo("slow",1);
+			//fadeTo(duration, opacity, [easing], [callback function])
+		},
+		function(){
+			$(this).parent().removeClass("hov");
+		}
+	);	
+});
+
+</script>
+</head>
+<body>
+<table>
+   <tr>
+      <td>
+         <a href = "images/p1.jpg" class = "small">
+            <img src ="images/p1.jpg" />
+         </a>
+      </td>
+      <td rowspan = "3" width = "350">
+         <img src = "images/p1.jpg" class = "large"/>
+      </td>
+   </tr>
+   <tr>
+      <td>
+         <a href = "images/p2.jpg" class = "small">
+            <img src ="images/p2.jpg" />
+         </a>
+      </td>
+   </tr>
+   <tr>
+      <td>
+         <a href = "images/p3.jpg" class = "small">
+            <img src ="images/p3.jpg" />
+         </a>
+      </td>
+   </tr>
+</table>
+</body>
+</html>

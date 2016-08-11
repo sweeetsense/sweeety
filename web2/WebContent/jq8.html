@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/jq8.css" />
+<script type="text/javascript" src = "http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="js/jq8.js">
+
+</script>
+</head>
+<body>
+<h2>**자료 입력**</h2>
+
+<form id="frm" method="get">
+id 입력: <input type="text" name="userid" id="userid" value="">
+<span class="msg" id="id_error">id를 채우시오</span>
+<br/>
+나이 입력: <input type="text" name="age" id="age" value="23" maxlength="3" size="3">
+<span class="msg" id="age_error1">나이를 채우시오</span>
+<span class="msg" id="age_error2">나이는 숫자만 허용</span>
+<br/>
+비밀번호 입력: <input type="text"  id="pwd1" value="">
+<span class="msg" id="p_error1">비밀번호를 채우시오</span>
+<br/>
+비밀번호 재입력: <input type="text"  id="pwd2" value="">
+<span class="msg" id="p_error2">비밀번호 불일치</span>
+<br/>
+<br/>
+<input type="button" id="btnSend" value="전송">
+</form>
+</body>
+</html>

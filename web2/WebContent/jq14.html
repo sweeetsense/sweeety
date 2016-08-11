@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src = "http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#btn1").bind("click", aa);
+	$("#btn2").bind("click", bb);
+	$("#btn3").bind("click", cc);
+});
+
+function aa(){
+	$("#disp").empty();
+	//alert("aa");
+	$.ajax({
+		type:"get",
+		url:"http://192.168.0.111/web2/jq14.jsp",
+		dataType:"jsonp",
+		jsonp:"callback",
+		success:function(data){
+			var re = data.datas;
+			//alert(re+" "+re.length);
+			var imsi = "";
+			$(re).each(function(ind, entry){
+				imsi = "<div>"+entry.no+" - "+entry["name"]+"</div>";
+				$("#disp").append(imsi);
+			});
+		},
+		fail:function(){
+			alert("읽기 실패");
+		}
+	});
+}
+function bb(){
+	//alert("bb");
+	var flickrApi = "https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
+	$.getJSON(flickrApi,{
+		tags:"celena",
+		tagmode:"any",
+		format:"json"
+	})
+	.done(function(data){
+		$.each(data.items, function(i, item){
+			$("<img>").attr("src", item.media.m).appendTo("#pic");
+			if(i == 3){
+				return false;
+			}
+		})
+	});
+}
+function cc(){
+	//$("#disp").empty();
+	alert("cc");
+}
+</script>
+</head>
+<body>
+** 다른 도메인 서버의 자료 읽기 **><br/>
+<button id="btn1">test1</button><br/>
+<button id="btn2">test2</button><br/>
+<button id="btn3">test3</button><hr>
+<div id="disp"></div>
+<div id="pic"></div>
+</body>
+</html>
