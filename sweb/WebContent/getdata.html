@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+window.onload = function(){
+	var btnOk = document.getElementById("btnOk");
+	btnOk.addEventListener("click", func1, false);
+	
+	document.getElementById("btnCancel").onclick = func2;
+}
+function func1(){
+	//alert("a");
+	if(frm.name.value === "" || frm.addr.value === "" || frm.age.value=== ""){
+		alert("빈 항목을 채우시오");
+		return;
+	}
+	frm.submit();
+}
+function func2(){
+	//alert("b");
+	frm.name.focus();
+}
+</script>
+</head>
+<body>
+* get test *<p/>
+<form action="GetData" method="get" name="frm">
+이름: <input type="text" name="name"><br/>
+주소: <input type="text" name="addr" size="30"><br/>
+나이: <input type="text" name="age"><br/><br/>
+
+<input type="button" id="btnOk" value="자료 전송"><br/>
+<input type="reset" id="btnCancel" value="입력 취소"><br/>
+</form>
+</body>
+</html>
