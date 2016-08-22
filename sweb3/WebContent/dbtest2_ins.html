@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>상품 추가</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#btnIns").click(function(){
+			alert("추가");
+			if($("#sang").val() === ""){
+				alert("상품명 입력");
+				return;
+			}
+			if($("#su").val() === ""){
+				alert("수량 입력");
+				return;
+			}
+			if(isNaN(parseInt($("#su").val()))){
+					alert("수량은 숫자만 입력");
+					return;
+			}if($("#dan").val() === ""){
+				alert("단가 입력");
+				return;
+			}if(isNaN(parseInt($("#dan").val()))){
+				alert("단가는 숫자만 입력");
+				return;
+			}
+			
+			$("#frm").submit();
+	});
+	$("#btnList").bind("click", listFunc);
+});
+
+function listFunc(){
+	location.href = "dbtest2.jsp";
+}
+</script>
+</head>
+<body>
+**상품 추가**
+<form action="dbtest2_ins.jsp" method="post" id="frm">
+품명 : <input type="text" name="sang" id="sang"><br/>
+수량 : <input type="text" name="su" id="su"><br/>
+단가 : <input type="text" name="dan" id="dan"><p>
+<input type="button" value="자료추가" id="btnIns">
+<input type="reset" value="입력취소">
+<input type="button" value="목록보기" id="btnList">
+
+</form>
+</body>
+</html>

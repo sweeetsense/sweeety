@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+window.onload = function(){
+	document.getElementById("submit").onclick = check;
+}
+function check(){
+	//alert(document.getElementById("code").value);
+	var code = document.getElementById("code").value;
+	if(code == "" || isNaN(code)){
+		alert("코드를 제대로 입력해주세요");		
+		return false;
+	}
+}
+</script>
+</head>
+<body>
+** 상품 삭제 **<br>
+<form action="dbsangdel.jsp">
+상품 코드: <input type="text" name="code" id="code">
+<input type="submit" id="submit">
+</form>
+</body>
+</html>
