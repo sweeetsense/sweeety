@@ -87,14 +87,30 @@ public class ExBangPooling {
 		}
 		return b;
 	}
-	public deleteData(ExBangBean bean){
+	public boolean deleteData(ExBangBean bean){
 		boolean b = false;
 		String sql = "";
+		int code = bean.getCode();
 		try {
 			sql = "delete from guest where code = ?";
-			
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, code);
+			int re = pstmt.executeUpdate();
+			if(re == 1){
+				b = true;
+			}
 		} catch (Exception e) {
 			System.out.println("delete err: "+e);
+		}finally{
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
 		}
+		return b;
 	}
 }

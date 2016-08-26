@@ -27,14 +27,14 @@ function funcDel(code){
 <button>글쓰기</button>
 </form><br>
 <table border="1">
-	<tr><th>코드</th><th>상품</th><th>수량</th><th>단가</th></tr>
+	<tr><th>코드</th><th>작성자</th><th>제목</th><th>내용</th></tr>
 <%
 ArrayList<ExBangBean> list = pooling.getData();
 for(ExBangBean a:list){
 %>	
 	<tr>
 		<td><a href="javascript:funcDel(<%=a.getCode() %>)"><%=a.getCode() %></a></td>
-		<td><a href="javascript:funcUp(<%=a.getName() %>)"><%=a.getName() %></a></td>
+		<td><a href="ExBang_del.jsp?code=" name="<%=a.getName() %>"><%=a.getName() %></a></td>
 		<td><%=a.getSubject() %></td>
 		<td><%=a.getContent() %></td>
 	</tr>
