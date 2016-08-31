@@ -6,5 +6,8 @@
 	<td style="width: 80; text-align:center;" >                                         
 		<b>고객님 환영합니다.</b>(주)korea 주식회사
 	</td>
+	<td style="width: 80; text-align:center;" >                                         
+		<a href="../admin/admin_index.jsp">관리자</a>
+	</td>
 </tr>
 </table>

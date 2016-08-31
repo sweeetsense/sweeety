@@ -34,3 +34,64 @@ function memberUpdateCancel(){
 function memberDelete(){
 	alert("회원 탈퇴는 나중에..");
 }
+
+function memUpdate(id){
+	//관리자에서 회원 수정할 때
+	//alert(id);
+	document.updateFrm.id.value = id;
+	document.updateFrm.submit();
+}
+
+function memberUpdateAdmin(){
+	document.updateFormAdmin.submit();
+}
+
+function memberUpdateCancelAdmin(){
+	location.href = "membermanager.jsp";
+}
+
+function productDetail(no){
+	//관리자에서 상품 처리 시
+	//alert(no);
+	document.detailFrm.no.value=no;
+	document.detailFrm.submit();
+}
+
+function productUpdate(no){
+	document.updateFrm.no.value=no;
+	document.updateFrm.submit();
+}
+
+function productDelete(no){
+	if(confirm("정말 삭제할까요?")){
+		document.deleteFrm.no.value=no;
+		document.deleteFrm.submit();
+	}
+}
+
+function cartUpdate(form){
+	//카트 처리용
+	form.flag.value="update";
+	form.submit();
+}
+
+function cartDelete(form){
+	form.flag.value="del";
+	form.submit();
+}
+
+function orderDetail(no){
+	//관리자 주문 상세보기
+	document.detailFrm.no.value=no;
+	document.detailFrm.submit();
+}
+
+function orderUpdate(form){
+	document.detailFrm.flag.value="update";
+	document.detailFrm.submit();
+}
+
+function orderDelete(form){
+	document.detailFrm.flag.value="delete";
+	document.detailFrm.submit();
+}
